@@ -22,33 +22,36 @@
 
 ---
 
-# Récapitulatif des concepts - Projet Shell I/O Redirections & Filters
+# Récapitulatif du projet `io_redirections_and_filters`
 
-| 0  | `0-hello_world`              | `echo "Hello, World"`                                              | Affichage sur la sortie standard                                                    |
-| 1  | `1-confused_smiley`          | `echo "\"(Ôo)'"`                                                   | Affichage de caractères spéciaux                                                    |
-| 2  | `2-hellofile`                | `cat /etc/passwd`                                                  | Lecture et affichage d’un fichier                                                   |
-| 3  | `3-twofiles`                 | `cat /etc/passwd /etc/hosts`                                       | Lecture de plusieurs fichiers                                                       |
-| 4  | `4-lastlines`                | `tail /etc/passwd`                                                 | Affichage des 10 dernières lignes d’un fichier                                      |
-| 5  | `5-firstlines`               | `head /etc/passwd`                                                 | Affichage des 10 premières lignes                                                   |
-| 6  | `6-third_line`               | `head -n 3 iacta \| tail -n 1`                                     | Affichage d’une ligne spécifique (3e ligne)                                         |
-| 7  | `7-file`                     | `echo "Best School" > '\*\\'"Best School"\'\\*\$?\*\*\*\*\*:)'`   | Création d’un fichier au nom complexe + redirection                                 |
-| 8  | `8-cwd_state`                | `ls -la > ls_cwd_content`                                          | Redirection de la sortie standard vers un fichier                                  |
-| 9  | `9-duplicate_last_line`      | `tail -n 1 iacta >> iacta`                                         | Redirection avec ajout (append) de contenu                                          |
-| 10 | `10-no_more_js`             | `find . -type f -name "*.js" -delete`                              | Suppression de fichiers avec `find`                                                 |
-| 11 | `11-directories`            | `find . -type d \| wc -l`                                          | Compte tous les répertoires (y compris `.`)                                         |
-| 12 | `12-newest_files`           | `ls -t \| head -n 10`                                              | Tri par date de modification + sélection des 10 plus récents                       |
-| 13 | `13-unique`                 | `sort \| uniq -u`                                                  | Filtrer les lignes uniques (non dupliquées)                                        |
-| 14 | `14-findthatword`           | `grep -w "root" /etc/passwd`                                       | Recherche d’un mot entier dans un fichier                                          |
-| 15 | `15-countthatword`          | `grep -cw "bin" /etc/passwd`                                       | Compter le nombre exact d’occurrences d’un mot                                     |
-| 16 | `16-whatsnext`              | `cut -d: -f1 /etc/passwd \| sort`                                  | Extraction de champs (cut) + tri                                                    |
-| 17 | `17-hidethisword`           | `grep -v "root" /etc/passwd`                                       | Exclure les lignes contenant un mot donné                                          |
-| 18 | `18-letteronly`             | `grep "^[a-zA-Z]*$"`                                               | Filtrer les lignes ne contenant que des lettres                                    |
-| 19 | `19-AZ`                     | `tr "A-Z" "a-z"`                                                   | Conversion des majuscules en minuscules                                            |
-| 20 | `20-hiago`                  | `tr -d "c"`                                                        | Suppression d’un caractère donné                                                    |
-| 21 | `21-reverse`                | `rev`                                                              | Inversion des lignes                                                               |
-| 22 | `22-users_and_homes`        | `cut -d: -f1,6 /etc/passwd \| sort` 
+| #  | Nom du fichier                | Description                                                                                          | 
+|----|-------------------------------|------------------------------------------------------------------------------------------------------|
+| 0  | 0-hello_world                 | Affiche “Hello, World” suivi d’un saut de ligne.                                                    |
+| 1  | 1-confused_smiley             | Affiche le smiley confus `"(Ôo)'`.                                                                   |
+| 2  | 2-hellofile                   | Affiche le contenu du fichier `/etc/passwd`.                                                         | 
+| 3  | 3-twofiles                    | Affiche le contenu de `/etc/passwd` et `/etc/hosts`.                                                 |
+| 4  | 4-lastlines                   | Affiche les 10 dernières lignes de `/etc/passwd`.                                                    |
+| 5  | 5-firstlines                  | Affiche les 10 premières lignes de `/etc/passwd`.                                                    |
+| 6  | 6-third_line                  | Affiche la 3ᵉ ligne du fichier `iacta` (sans utiliser `sed`).                                       |
+| 7  | 7-file                        | Crée un fichier avec un nom spécial contenant le texte `Best School` suivi d’un saut de ligne.      |
+| 8  | 8-cwd_state                   | Écrit dans `ls_cwd_content` le résultat de la commande `ls -la`.                                     |
+| 9  | 9-duplicate_last_line         | Duplique la dernière ligne du fichier `iacta`.                                                       |
+| 10 | 10-no_more_js                 | Supprime tous les fichiers `.js` (pas les dossiers) dans le répertoire courant et ses sous-dossiers.|
+| 11 | 11-directories                | Compte les dossiers et sous-dossiers (hors `.` et `..`, inclut les dossiers cachés).                  |
+| 12 | 12-newest_files              | Affiche les 10 fichiers les plus récents du répertoire courant, triés du plus récent au plus ancien. |
+| 13 | 13-unique                    | Affiche les mots qui apparaissent une seule fois dans une liste, triés par ordre alphabétique.       |
+| 14 | 14-findthatword              | Affiche les lignes contenant le mot “root” dans le fichier `/etc/passwd`.                            |
+| 15 | 15-countthatword             | Affiche le nombre de lignes contenant le mot “bin” dans `/etc/passwd`.                               |
+| 16 | 16-whatsnext                 | Affiche les lignes contenant “root” suivies des 3 lignes suivantes dans `/etc/passwd`.               |
+| 17 | 17-hidethisword              | Affiche les lignes de `/etc/passwd` ne contenant pas le mot “bin”.                                   |
+| 18 | 18-letteronly                | Affiche les lignes de `/etc/ssh/sshd_config` qui commencent par une lettre (majuscule ou minuscule). |
+| 19 | 19-AZ                        | Remplace les lettres `A` par `Z` et `c` par `e` dans l’entrée standard.                              |
+| 20 | 20-hiago                     | Supprime toutes les lettres `c` et `C` de l’entrée standard.                                         |
+| 21 | 21-reverse                   | Inverse l’entrée standard (chaîne de caractères).                                                    |
+| 22 | 22-users_and_homes           | Affiche les utilisateurs et leurs répertoires personnels à partir de `/etc/passwd`, triés.           |
 
 ---
+
 
 # 🐚 Projet : Shell - Init Files, Variables and Expansions
 
